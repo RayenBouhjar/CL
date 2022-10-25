@@ -1,11 +1,8 @@
-FROM node:14.15.3-alpine as node
-RUN mkdir -p /app
+# stage 1
+FROM node:latest as node
 WORKDIR /app
-COPY package.json /app/
-RUN npm install install -f
-COPY . /app/
-RUN npm run build --prod
-
+COPY . .
+RUN npm install -f --legacy-peer-deps
 # stage 2
 FROM nginx:alpine
-COPY --from=node /app/dist/crudtuto-Front /usr/share/nginx/html
+COPY --from=node  /app/dist/crudtuto-Front /usr/share/nginx/html
