@@ -1,12 +1,10 @@
+# stage 1
 FROM node:latest
-
-WORKDIR /usr/src/app
-
-COPY package.json ./
-
-RUN npm install
-
+WORKDIR /app
 COPY . .
+RUN npm install -f --legacy-peer-deps
+RUN npm run build --prod
 
-EXPOSE 3000
-CMD [ "node", "index.js" ]
+# stage 2
+FROM nginx:alpine
+COPY --from=node /app/dist/crudtuto-Front /usr/share/nginx/html
