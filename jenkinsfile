@@ -1,0 +1,14 @@
+pipeline {
+
+  agent any
+
+  stages {
+
+    stage('PULL') {
+     steps {
+				git 'https://github.com/riadhmars/CICD_Front.git'
+			}
+}
+  }
+
+}
