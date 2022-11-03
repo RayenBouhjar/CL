@@ -4,7 +4,7 @@ pipeline {
 
   stages {
 
-    stage('PULL') {
+    stage('clone') {
      steps {
 				git 'https://github.com/riadhmars/CICD_Front.git'
 			}
