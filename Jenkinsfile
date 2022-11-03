@@ -4,7 +4,7 @@ pipeline {
 
   stages {
 
-    stage('clone') {
+    stage('Checkout SCM') {
      steps {
 				git 'https://github.com/riadhmars/CICD_Front.git'
 			}
